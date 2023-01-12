@@ -1,0 +1,26 @@
+
+
+
+(defwidget workspaces []
+  (eventbox
+    :onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
+    :onmiddleclick "${EWW_CMD} open --toggle win-workspace"
+    :onrightclick "${EWW_CMD} open --toggle win-workspace"
+    (box
+      :class "module workspaces"
+      :spacing 0
+      :space-evenly false
+      (for i in ws_loop
+        (button
+          :onclick "hyprctl dispatch workspace ${workspace[i].number}"
+          :class "ws-${workspace[i].number} ws-${workspace[i].activity}"
+          ; "●" ❶❷❸❹❺❻❼❽❾❿
+          " "
+        )
+      )
+    )
+  )
+)
+
+
+; ①②③④⑤⑥⑦⑧⑨⑩
